@@ -3,11 +3,49 @@
 from scapy.all import *
 import pcapy
 import argparse
+from base64 import b16decode
 
-def packetcallback(packet):
+Protocols = ["HOPOPT", "ICMP", "IGMP", "GGP", "IPv4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN-RCC-MON", "NVP-II", "PUP",
+"ARGUS", "EMCON", "XNET", "CHAOS", ]
+count = 0
+
+def find_usrpass(packet):
+  global count
+  
+  pac
+
+def packetcallback(packet, raw):
+  global count
+
+  data_raw = raw.splitlines()
+
+
+
   try:
     if packet[TCP].dport == 80:
-      print("HTTP (web) traffic detected!")
+      pass
+
+    if packet[TCP].flags == "": #null scan
+      count = count + 1
+      print("ALERT {}: Null scan is detected from {} {}!" .format(count, packet[IP].src, Protocols[packet.proto]))
+    
+    if packet[TCP].flags == "F": # fin scan
+      count = count + 1
+      print("ALERT {}: Fin scan is detected from {} {}!" .format(count, packet[IP].src, Protocols[packet.proto]))
+
+    if packet[TCP].flags == "FPU": # xmas scan
+      count = count + 1
+      print("ALERT {}: Xmas scan is detected from {} {}!" .format(count, packet[IP].src, Protocols[packet.proto]))
+    
+
+    packet_data_raw = str(packet)      
+    if "nikto" in packet_data_raw.lower(): # Nikto scan
+      count = count + 1
+      print("ALERT {}: Nikto scan is detected from {} {}!" .format(count, packet[IP].src, Protocols[packet.proto]))
+    
+
+    find_usrpass(packet, packet_data_raw) # check whether there's password sent in clear text
+
   except:
     pass
 
