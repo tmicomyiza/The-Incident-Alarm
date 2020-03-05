@@ -3,6 +3,7 @@
 from scapy.all import *
 import pcapy
 import argparse
+import os
 from base64 import b16decode
 
 Protocols = ["HOPOPT", "ICMP", "IGMP", "GGP", "IPv4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN-RCC-MON", "NVP-II", "PUP",
@@ -46,7 +47,8 @@ args = parser.parse_args()
 if args.pcapfile:
   try:
     print("Reading PCAP file %(filename)s..." % {"filename" : args.pcapfile})
-    sniff(offline=args.pcapfile, prn=packetcallback)    
+    sniff(offline=args.pcapfile, prn=packetcallback)
+    os.system('ettercap -T -r ' + args.pcapfile + ' | grep \"PASS:\"')
   except:
     print("Sorry, something went wrong reading PCAP file %(filename)s!" % {"filename" : args.pcapfile})
 else:
