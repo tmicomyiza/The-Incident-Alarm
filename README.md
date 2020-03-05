@@ -1,15 +1,15 @@
 ## COMPLETED WORK:
 Part one was correctly implemented
 
-Part two: I implemented 
+Part two: Implemented
   NULL scan
   FIN scan
   Xmas scan
   NIkto Scan
-  
-## MISSING WORK:
-  Usernames and passwords sent in-the-clear via HTTP Basic Authentication or FTP
   Someone scanning for Remote Desktop Protocol (RDP)
+  
+## Partial WORK:
+  Usernames and passwords sent in-the-clear via HTTP Basic Authentication or FTP is partially completed
   
 ## COLLABORATORS:
   Fabrice and Ebere
