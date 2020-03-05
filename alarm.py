@@ -13,6 +13,10 @@ def packetcallback(packet):
   global count
 
   try:
+    if packet[TCP].dport == 3389:
+      count = count + 1
+      print("ALERT #{}: RDP is detected from {} {}!" .format(count, packet[IP].src, Protocols[packet.proto]))
+
     if packet[TCP].flags == "": #null scan
       count = count + 1
       print("ALERT #{}: Null scan is detected from {} {}!" .format(count, packet[IP].src, Protocols[packet.proto]))
