@@ -19,9 +19,9 @@ Example outputs: ALERT #1: Xmas scan is detected from 1.1.1.1 (TCP)!
 
 ## REQUIREMENTS:
 
-  1. you need python3
-  2. you need pcapy module
-  3. you must log in as root or admin depending on your OS
+  * you need python3
+  * you need pcapy module
+  * you must log in as root or admin depending on your OS
 
 
 ## HOW TO USE IT:
