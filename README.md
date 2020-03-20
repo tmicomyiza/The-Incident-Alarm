@@ -35,7 +35,7 @@ By default with no arguments, the tool will sniff on network interface eth0. The
 
 Example 1: python alarm.py -h shall display something of the like:
 
-`# usage: alarm.py [-h] [-i INTERFACE] [-r PCAPFILE]
+`* usage: alarm.py [-h] [-i INTERFACE] [-r PCAPFILE]
 
 A network sniffer that identifies basic vulnerabilities
 
