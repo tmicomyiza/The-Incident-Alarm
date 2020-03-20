@@ -1,7 +1,7 @@
 ## DESCRIPTION:
 It provides user the option to analyze a live stream of network packets or a set of PCAPs for incidents. Your tool shall be able to analyze for the following incidents:
 
-  . NULL scan
+  * NULL scan
   . FIN scan
   . Xmas scan
   . Nikto scan
