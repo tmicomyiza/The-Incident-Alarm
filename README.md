@@ -2,10 +2,10 @@
 It provides user the option to analyze a live stream of network packets or a set of PCAPs for incidents. Your tool shall be able to analyze for the following incidents:
 
   * NULL scan
-  . FIN scan
-  . Xmas scan
-  . Nikto scan
-  . Someone scanning for Remote Desktop Protocol (RDP)
+  * FIN scan
+  * Xmas scan
+  * Nikto scan
+  * Someone scanning for Remote Desktop Protocol (RDP)
   
 ## HOW IT WORKS:
 
@@ -35,15 +35,15 @@ By default with no arguments, the tool will sniff on network interface eth0. The
 
 Example 1: python alarm.py -h shall display something of the like:
 
-`usage: alarm.py [-h] [-i INTERFACE] [-r PCAPFILE]
+`# usage: alarm.py [-h] [-i INTERFACE] [-r PCAPFILE]
 
 A network sniffer that identifies basic vulnerabilities
 
 optional arguments: -h, --help show this help message and exit -i INTERFACE Network interface to sniff on -r PCAPFILE A PCAP file to read`
 
-Example 2: python3 alarm.py -r set2.pcap will read the packets from set2.pcap
+* Example 2: python3 alarm.py -r set2.pcap will read the packets from set2.pcap
 
-Example 3: python3 alarm.py -i en0 will sniff packets on a wireless interface en0
+* Example 3: python3 alarm.py -i en0 will sniff packets on a wireless interface en0
 
 When sniffing on a live interface, the tool will keep running. To quit it, press Control-C
 
