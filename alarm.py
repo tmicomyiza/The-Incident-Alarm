@@ -6,15 +6,19 @@ import argparse
 import os
 from base64 import b16decode
 
-Protocols = ["HOPOPT", "ICMP", "IGMP", "GGP", "IPv4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN-RCC-MON", "NVP-II", "PUP",
-"ARGUS", "EMCON", "XNET", "CHAOS", ]
+
+Protocols = ["HOPOPT", "ICMP", "IGMP", "GGP", "IPv4", "ST", "TCP",
+              "CBT", "EGP", "IGP", "BBN-RCC-MON", "NVP-II", "PUP",
+              "ARGUS", "EMCON", "XNET", "CHAOS", ]
+
 count = 0
 
-
+'''receives a packet and evaluates which scan the packet is performing'''
 def packetcallback(packet):
   global count
 
   try:
+    # capture RDP Scan
     if packet[TCP].dport == 3389:
       count = count + 1
       print("ALERT #{}: RDP is detected from {} ({})!" .format(count, packet[IP].src, Protocols[packet.proto]))
@@ -41,6 +45,10 @@ def packetcallback(packet):
   except:
     pass
 
+
+
+
+
 parser = argparse.ArgumentParser(description='A network sniffer that identifies basic vulnerabilities')
 parser.add_argument('-i', dest='interface', help='Network interface to sniff on', default='eth0')
 parser.add_argument('-r', dest='pcapfile', help='A PCAP file to read')
@@ -50,14 +58,9 @@ if args.pcapfile:
     print("Reading PCAP file %(filename)s..." % {"filename" : args.pcapfile})
     sniff(offline=args.pcapfile, prn=packetcallback)
 
-    #capture passwords and username
-    passuser = os.popen('ettercap -T -r ' + args.pcapfile + ' | grep \"PASS:\"').read()
-
-    count = count + 1
-    print("ALERT #{}: Password and username detected {}" .format(count,passuser))
-
   except:
     print("Sorry, something went wrong reading PCAP file %(filename)s!" % {"filename" : args.pcapfile})
+
 else:
   print("Sniffing on %(interface)s... " % {"interface" : args.interface})
   try:
